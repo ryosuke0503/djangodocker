@@ -1,0 +1,42 @@
+version: "2"
+services:
+
+  app:
+    build: ./python
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./python:/home/workspace
+      - ./python_django:/home/python_django
+    tty: true
+  mysql:
+    image: mysql:5.7
+    ports:
+      - 3306:3306
+    volumes:
+      - ./mysql/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: mydb
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
+    command: >
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_unicode_ci
+    networks:
+      default:
+        aliases:
+          - local.mysql
+  phpmyadmin:
+    depends_on:
+      - mysql
+    links:
+      - mysql
+    image: phpmyadmin/phpmyadmin:latest
+    ports:
+      - 13306:80
+    environment:
+      PMA_ARBITRARY: 1
+      PMA_HOST: mysql
+      PMA_USER: admin
+      PMA_PASSWORD: admin
