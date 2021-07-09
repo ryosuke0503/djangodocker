@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>edit.html</h1>
+<li>{{ job_form.as_p }}</li>
+<a href="{% url 'edit' %}?job_id={{hoge_id}}" >edit</a>
+{% endblock %}

@@ -1,0 +1,10 @@
+
+<h2>新規作成：<a href="{% url 'job_create'%}">追加</a></h2>
+{% for post in object_list %}
+<div class="post">
+  <h2>詳細へ：<a href="{% url 'job_detail' post.pk %}">{{ post.job_name }}</a></h2>
+  <p>{{ post.body }}</p>
+  <h2>編集：<a href="{% url 'job_edit' post.pk %}">{{ post.job_name }}</a></h2>
+  <h2>削除：<a href="{% url 'job_delete' post.pk %}">{{ post.job_name }}</a></h2>
+</div>
+{% endfor %}
