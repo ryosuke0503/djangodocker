@@ -7,5 +7,6 @@ urlpatterns = [
     path('', MatchListView.as_view(), name='match_home'),
     path('post/new/', MatchCreateView.as_view(), name='match_create'),
     path('post/<int:pk>/edit/', MatchUpdateView.as_view(), name='match_edit'),
-    path('post/<int:pk>/delete/', MatchDeleteView.as_view(), name='match_delete')
+    path('post/<int:pk>/delete/', MatchDeleteView.as_view(), name='match_delete'),
+    path('import', views.MatchImport, name='match_import'),
 ]

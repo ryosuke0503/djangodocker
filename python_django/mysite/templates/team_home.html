@@ -1,10 +1,19 @@
+<a href="{% url 'match_home'%}">試合結果一覧へ</a>
 
 <h2>新規作成：<a href="{% url 'team_create'%}">追加</a></h2>
 {% for post in object_list %}
 <div class="post">
-  <h2>詳細へ：<a href="{% url 'team_detail' post.pk %}">{{ post.name }}</a></h2>
-  <p>{{ post.body }}</p>
-  <h2>編集：<a href="{% url 'team_edit' post.pk %}">{{ post.name }}</a></h2>
-  <h2>削除：<a href="{% url 'team_delete' post.pk %}">{{ post.name }}</a></h2>
+  <h2 style="display:inline">{{ post.name }}: 
+    <h4 style="display:inline">
+      <a href="{% url 'team_detail' post.pk %}">詳細</a>
+      <a href="{% url 'team_edit' post.pk %}">編集</a>
+      <a href="{% url 'team_delete' post.pk %}">削除</a>
+    </h4>
+  </h2>
 </div>
 {% endfor %}
+<form action="{% url 'team_import' %}" method='POST' enctype="multipart/form-data">
+  {% csrf_token %}
+  <input type="file" name="csv">
+  <button type="submit">送信</button>
+</form>

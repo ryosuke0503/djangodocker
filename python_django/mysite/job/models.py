@@ -1,5 +1,7 @@
 from django.db import models
 from django.urls import reverse
+from django.core.validators import FileExtensionValidator
+import os
 
 # Create your models here.
 class Job(models.Model):
@@ -37,3 +39,21 @@ class Match(models.Model):
         return self.kind
     def get_absolute_url(self):
         return reverse('match_detail', args=[str(self.id)])
+
+class FileUpload(models.Model):
+    """
+    ファイルのアップロード
+    """
+    title = models.CharField(default='CSVアフィル', max_length=50)
+    upload_dir = models.FileField(upload_to='csv', validators=[FileExtensionValidator(['csv',])])
+    created_at = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title
+
+    def file_name(self):
+        """
+        相対パスからファイル名のみを取得するカスタムメソッド
+        """
+        path = os.path.basename(self.upload_dir.name)
+        return path
