@@ -1,4 +1,7 @@
-<h1>編集する</h1>
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+
+<h1 class="pagehead">編集する</h1>
 <form action="" method="post">
   {% csrf_token %}
   {{ form.as_p }}

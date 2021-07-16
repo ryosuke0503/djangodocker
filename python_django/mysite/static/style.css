@@ -1,0 +1,12 @@
+.hello {
+    color: #e66a1b;
+    font-size: 40px;
+}
+.pagehead {
+    border-bottom: double 5px #f4a460;
+}
+.content {
+    padding: 0.5em;
+    background: aliceblue;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.23);
+}

@@ -1,4 +1,13 @@
-<div class="post-entry">
-    <h2>{{ object.name }}</h2>
-    <p>{{ object.body }}</p>
-  </div>
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+
+<h2 class="pagehead">{{ object.name }}</h2>
+<div style="line-height: 1;" class="content">
+    <p>総試合数: </p>
+    <p>勝利数: , 勝利率</p>
+    <p>敗北数: , 敗北率</p>
+    <p>引分数: , 引分率</p>
+    <p>総得点率: </p>
+    <p>総失点数: </p>
+</div>
+<a href="{% url 'team_home'%}">一覧へ戻る</a>

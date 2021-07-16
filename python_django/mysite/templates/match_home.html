@@ -1,17 +1,33 @@
 <a href="{% url 'team_home'%}">チーム一覧へ</a>
 
 <h2>新規作成：<a href="{% url 'match_create'%}">追加</a></h2>
-{% for post in object_list %}
-<div class="post">
-  <a style="display:inline">{{ post.id }}:{{ post.year }}/{{ post.date }} {{ post.home }} [{{ post.homescore }}] vs [{{ post.awayscore }}] {{ post.away }}
-    <a style="display:inline">
+
+<table border="1" width="200">
+  <tr>
+    <th nowrap>ID</th>
+    <th nowrap>試合日</th>
+    <th nowrap>ホーム</th>
+    <th nowrap>ホーム得点</th>
+    <th nowrap>アウェイ得点</th>
+    <th nowrap>アウェイ</th>
+  </tr>
+  {% for post in object_list %}
+  <tr>
+    <th nowrap>{{ post.id }}</th>
+    <th nowrap>{{ post.year }}/{{ post.date }}</th>
+    <th nowrap>{{ post.home }}</th>
+    <th nowrap>{{ post.homescore }}</th>
+    <th nowrap>{{ post.awayscore }}</th>
+    <th nowrap>{{ post.away }}</th>
+    <th nowrap>
       <a href="{% url 'match_detail' post.pk %}">詳細</a>
       <a href="{% url 'match_edit' post.pk %}">編集</a>
       <a href="{% url 'match_delete' post.pk %}">削除</a>
-    </a>
-  </a>
-</div>
-{% endfor %}
+    </th>
+  </tr>
+  {% endfor %}
+</table>
+
 <form action="{% url 'match_import' %}" method='POST' enctype="multipart/form-data">
   {% csrf_token %}
   <input type="file" name="csv">

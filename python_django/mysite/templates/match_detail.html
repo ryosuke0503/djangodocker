@@ -1,5 +1,8 @@
-<div class="post-entry">
-    <h2>id: {{ object.id }}</h2>
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+
+<h2 class="pagehead">id: {{ object.id }}</h2>
+<div style="line-height: 1;" class="content">
     <p>year: {{ object.year }}</p>
     <p>league: {{ object.league }}</p>
     <p>kind: {{ object.kind }}</p>
@@ -12,4 +15,5 @@
     <p>stadium: {{ object.stadium }}</p>
     <p>viewers: {{ object.viewers }}</p>
     <p>broadcasts: {{ object.broadcasts }}</p>
-  </div>
+</div>
+<a href="{% url 'match_home'%}">一覧へ戻る</a>

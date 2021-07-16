@@ -1,4 +1,7 @@
-<h1>記事を削除する</h1>
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+
+<h1 class="pagehead">記事を削除する</h1>
 <form action="" method="post">
   {% csrf_token %}
   <p>本当に{{ match.id }}を削除してもよろしいですか？</p>
